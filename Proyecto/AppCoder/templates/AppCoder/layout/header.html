@@ -1,0 +1,61 @@
+{% load static %} 
+<nav class="navbar navbar-expand-lg navbar-dark" style="padding: 20px 0 25px;background: -webkit-linear-gradient(45deg, #3ac5c8 1%, #0b509e 100%);">
+    <div class="container-fluid ms-5">
+      <img class="img-fluid rounded " loading="lazy" src="{% static 'imagen/blog.png' %}" width="60" alt="BootstrapBrain Logo">
+        
+        <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active btn btn-ligth" aria-current="page" href="{% url 'home' %}"><i class="fa fa-home"></i> Inicio</a>
+            </li> 
+            <li>
+              <div class="dropdown ms-3 " >
+                <button class="btn btn-ligth text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-comments me-2"></i> Blog               
+                </button>
+                <ul class="dropdown-menu text-white" aria-labelledby="dropdownMenuButton1" style="background-color: #5779a9a8;">
+                  {% if user.is_authenticated %}
+                  <li>
+                    <a class="nav-link  text-white" aria-current="page" href="{% url 'nuevoblog' %}"><i class="fa fa-plus-circle me-2"></i> Crear blog</a>                    
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link  text-white" aria-current="page" href="{% url 'Buscarblog' %}"><i class="fa fa-search me-2"></i> Buscar Blog</a>
+                  </li> 
+                </ul>
+              </div>
+            </li>            
+          </ul>
+          <div class="d-flex text-white">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">              
+              
+              {% if user.is_authenticated %}
+             
+              <li>
+                <div class="dropdown">
+                  <button class="btn btn-ligth text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  
+                    <span>{{ user.first_name}}  {{ user.last_name}}</span>
+                 
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="background-color: #5779a9a8;">
+                    <li><a class="nav-link text-white" href="{% url 'updateperfil' user.id %}"><i class="fa fa-drivers-license-o me-2"></i>Editar Perfil</a></li>                    
+                    <li class="nav-item">
+                      <a class="nav-link text-white" aria-current="page" href="{% url 'logout' %}"><i class="fa fa-sign-out me-2"></i>Cerrar Sesión</a>
+                    </li> 
+                  </ul>
+                </div>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active btn btn-ligth me-2" aria-current="page" href="{% url 'login' %}"><i class="fa fa-sign-in me-1"></i>Login</a>
+              </li> 
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link btn btn-ligth" aria-current="page" href="{% url 'about' %}"><i class="fa fa-life-ring me-1"></i>Acerca de</a>
+              </li> 
+            </ul>           
+          </div>
+        </div>
+      </div>
+</nav>

@@ -1,0 +1,21 @@
+{% extends "AppCoder/inicio.html" %} 
+
+{% load static %} 
+
+
+
+{% block contenidoPrincipal %}
+
+<section class="section transheader customtitle mx-auto  mb-4" style ="background: linear-gradient(45deg, #3ac5c8 1%, #0b509e 100%);">
+    <div class="container">
+        <div class="row">	
+            <div class="col-md-12 col-md-offset-1 col-sm-12 text-center">
+                <img class="img-fluid rounded mb-4" loading="lazy" src="{% static 'imagen/logo_software.png' %}" width="245" height="80" alt="BootstrapBrain Logo">
+                <h4 class="text-white mb-3 lead">Soy Sergio Rivera, residente en Chile, apasionado por el desarrollo Software y la constante capacitación. Busco crecimiento continuo en el ámbito profesional, explorando nuevas oportunidades y adquiriendo habilidades para contribuir al mundo tecnológico.</h4>  
+                <p class="text-white h5 lead">"Este proyecto es un blog centrado en lenguajes de programación, proporcionando a los usuarios un espacio para compartir conocimientos, experiencias y novedades en el mundo de la programación. Facilita la colaboración y discusión en torno a temas específicos de desarrollo de software."</p>
+                <p class="lead"><a href="{% url 'home' %}" class="btn btn-warning btn-rounded">Volver a Inicio</a></p>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+{% endblock %}

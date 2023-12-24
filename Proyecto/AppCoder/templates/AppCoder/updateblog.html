@@ -1,0 +1,15 @@
+{% extends "AppCoder/inicio.html" %} {% load static %} 
+{% block contenidoPrincipal %}
+<section class=" mb-2" style ="background: linear-gradient(45deg, #3ac5c8 1%, #0b509e 100%);">
+<div class="row">
+  <div class="col-8 mx-auto p-5 ">
+    <form class="quoteform lightform h-60" method="POST" enctype="multipart/form-data">     
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-info">Actualizar Blog</button>      
+    </form>
+  </div><!-- end col -->
+
+</div>
+</section>
+
+{% endblock %}

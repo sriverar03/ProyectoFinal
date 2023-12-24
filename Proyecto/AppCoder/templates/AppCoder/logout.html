@@ -1,0 +1,20 @@
+{% extends "AppCoder/inicio.html" %} 
+
+{% load static %} 
+
+
+
+{% block contenidoPrincipal %}
+
+<section class="section transheader customtitle mx-auto  mb-10" style ="background: linear-gradient(45deg, #3ac5c8 1%, #0b509e 100%);">
+    <div class="container">
+        <div class="row">	
+            <div class="col-md-12 col-md-offset-1 col-sm-12 text-center">
+                <img class="img-fluid rounded mb-4" loading="lazy" src="{% static 'imagen/desconectar.png' %}" width="245" height="80" alt="BootstrapBrain Logo">
+                <h2>La Sesión ha sido <strong>Desconectada</strong></h2>               
+                <p class="lead"><a href="{% url 'home' %}" class="btn btn-warning btn-rounded">Volver a Inicio</a></p>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+{% endblock %}

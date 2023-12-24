@@ -1,0 +1,101 @@
+{% extends "AppCoder/inicio.html" %} {% load static %} 
+{% block contenidoPrincipal %}
+
+<div class="row mt-5" style="margin: 0 20% 0 20%;">
+<div class="content col-md-12 blog-alt">
+    {% for blog in filtro  %}
+  <div class="blog-box clearfix">
+    <div class="media-box text-center feature-img">
+      <img src="../../{{blog.imagen}}" alt="" width="100%" height="300px" class="img-responsive">
+    </div><!-- end media-box -->
+    <div class="blog-single">
+      <div class="blog-meta">
+       
+        <ul class="list-inline">        
+          <li><span class="me-4 fs-12 bd-cyan-300"><i class="fa fa-calendar-o"></i> {{blog.fecha}}</span>         
+          <span class="bd-cyan-300"><i class="fa fa-comments-o "></i> {{comentario.count}} Comentarios</span>
+        </ul>
+      </div><!-- end meta -->
+     
+      <h3 class="post-title bd-indigo-400">{{blog.titulo}}</h3>
+     
+      <p>{{blog.contenido}}</p>
+      {% endfor %}
+     
+
+     
+    </div><!-- end blog-desc -->
+  </div><!-- end blogbox -->
+
+              <div class="blog-box clearfix">
+                  <div class="custom-title">
+                      <h4 class="bd-gray-400">{{comentario.count}} Comentarios </h4>
+                      <hr class="text-primary">
+                  </div><!-- end -->
+                  {% for com in comentario  %}                  
+                 
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card2 p-3 mb-3">
+                              <div class="card-body comments">
+                                  <ul class="media-list" style="list-style:none">
+                                      <li class="media">
+                                          <div class="comment">                                              
+                                                  <img src="{% static 'imagen/team_01.jpeg' %}" width="10%" height="10%" alt="" class="rounded-circle" style="float: inline-start;">
+                                             
+                                              <div class="media-body">
+                                                <div>
+                                                  <strong class="text-success">{{com.autor.first_name}} {{com.autor.last_name}}</strong>
+                                                  <br>
+                                                  <span class="text-muted">
+                                                    <small class="text-muted">{{com.fecha}}</small></span>
+                                                  </div>
+                                                  
+                                              </div>
+                                              <div class="clearfix"></div>
+                                              <p>{{com.comentario}} </p>
+                                                 
+                                          </div>
+                                        </li>                                              
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div><!-- end postpager -->
+
+              <div class="blog-box clearfix text-primary">
+                  <div class="custom-title">
+                      <h4 class="bd-gray-400">Deja un Comentario</h4>
+                  </div><!-- end about -->
+                  
+                  {% if user.is_authenticated %}
+                  <div class="contact_form comment-form">
+                      <form class="row" method="POST" action="../comentario/">
+                        {% csrf_token %}
+                        {% for bg in filtro  %}
+                              <input type="hidden" class="form-control" id="id_autor" name="autor" value="{{user.id}}" >                         
+                              <input type="hidden" class="form-control" id="id_blog" name="blog" value="{{bg.id}}">                        
+                        {% endfor %}    
+                          
+                          <div class="col-md-12 col-sm-12">
+                              <label class="bd-gray-400">Comentario <span class="required">*</span></label>
+                              <textarea class="form-control" placeholder="" id="id_comentario" col="6" name="comentario" required  style="height: 149px;"></textarea>
+                          </div>
+                          <div class="col-md-12 col-sm-12 mt-2">
+                              <input type="submit" value="Enviar comentario" class="btn btn-primary">
+                          </div>
+                      </form>
+                  </div><!-- end commentform -->
+                  {% else %}
+                  <div class="alert alert-primary " role="alert">
+                    Para agregar comentarios debes estar registrado, <p>No tienes una cuenta? <a href="{% url 'nuevoperfil' %}" class="text-primary">Registrate</a></p>
+                  </div>
+                  {% endif %}
+              </div><!-- end postpager -->
+</div>
+</div> 
+  
+
+{% endblock %}

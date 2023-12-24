@@ -1,0 +1,25 @@
+{% extends "AppCoder/inicio.html" %} {% load static %} 
+{% block contenidoPrincipal %}
+
+<div class="row">
+  <div class="col-3 mx-auto mb-5">
+    <div class="card">
+      <div class="card-header bg-info">Solicitud de Viaje</div>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button type="submit" class="btn btn-info">Guardar Solicitud</button>
+        </form>
+      </div>
+    </div>
+    
+     
+      {% if msg != '' %}
+        <div class="alert bg-success mt-5 text-white" role="alert">
+          {{msg}}
+        </div>
+      {% endif %}
+  </div> 
+</div>
+
+{% endblock %}

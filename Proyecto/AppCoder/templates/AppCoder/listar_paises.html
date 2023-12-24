@@ -1,0 +1,32 @@
+{% extends "AppCoder/inicio.html" %} {% load static %} 
+{% block contenidoPrincipal %}
+
+<div class="row"> 
+  <div class="col-6 mx-auto">
+    {% if paises.count > 0 %}
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Nombre</th>
+                           
+              
+            </tr>
+          </thead>
+          <tbody>
+              {% for pais in paises  %}
+            <tr>              
+              <td>{{pais.id}}</td>
+              <td>{{pais.nombre}}</td>
+                         
+            </tr>
+            {% endfor %}
+          
+          </tbody>
+        </table>      
+    {% endif %}
+  </div> 
+  </div>
+</div>
+
+{% endblock %}
